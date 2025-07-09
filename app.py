@@ -1,14 +1,20 @@
 import streamlit as st
-from utils.youtube_downloader import download_youtube_audio
+import os
+import shutil
 
 st.title("🎸 AI Guitar Tab Maker (Lite)")
-st.subheader("Paste a YouTube link to get started")
+st.subheader("Upload an audio file (.mp3 or .wav)")
 
-yt_link = st.text_input("Paste YouTube link here")
+uploaded_file = st.file_uploader("Choose an audio file", type=["mp3", "wav"])
 
-if yt_link:
-    st.info("Downloading audio from YouTube...")
-    file_path = download_youtube_audio(yt_link)
-    st.success("Audio downloaded!")
+if uploaded_file:
+    st.info("Saving your file...")
+    os.makedirs("audio", exist_ok=True)
+    file_path = os.path.join("audio", uploaded_file.name)
 
-    st.warning("✅ Audio downloaded! MIDI transcription not enabled yet.")
+    with open(file_path, "wb") as f:
+        shutil.copyfileobj(uploaded_file, f)
+
+    st.success("File saved!")
+
+    st.warning("✅ Audio uploaded! MIDI transcription not enabled yet.")
