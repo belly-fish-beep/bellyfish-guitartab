@@ -15,6 +15,6 @@ if uploaded_file:
     with open(file_path, "wb") as f:
         shutil.copyfileobj(uploaded_file, f)
 
-    st.success("File saved!")
+    st.success("File uploaded!")
 
-    st.warning("✅ Audio uploaded! MIDI transcription not enabled yet.")
+    st.warning("✅ Audio saved! MIDI transcription will be added soon.")
