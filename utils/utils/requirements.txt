@@ -1,8 +1,0 @@
-streamlit
-basic-pitch
-torch
-torchaudio
-miditoolkit
-librosa
-soundfile
-yt-dlp
