@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import shutil
+from utils.transcription import transcribe_to_midi
 
 st.title("🎸 AI Guitar Tab Maker (Lite)")
 st.subheader("Upload an audio file (.mp3 or .wav)")
@@ -17,4 +18,15 @@ if uploaded_file:
 
     st.success("File uploaded!")
 
-    st.warning("✅ Audio saved! MIDI transcription will be added soon.")
+    st.info("Transcribing audio to MIDI...")
+    midi_path = transcribe_to_midi(file_path, "song")
+
+    st.success("Transcription complete!")
+
+    with open(midi_path, "rb") as f:
+        st.download_button(
+            label="🎼 Download MIDI File",
+            data=f,
+            file_name="guitar_tab.mid",
+            mime="audio/midi"
+        )
