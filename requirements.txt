@@ -1,6 +1,4 @@
 streamlit
-basic-pitch
-torch==2.0.1
-torchaudio==2.0.1
 yt-dlp
 soundfile
+numpy
